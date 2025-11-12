@@ -8,9 +8,11 @@ public class OperationMathematique {
         return nombre > 0;
     }
 
-    // Ici on remplace l'ancienne factoriel
     public int factoriel(int nombre) {
-        if(nombre < 0) throw new IllegalParamISIException("Factoriel d'un nombre négatif impossible");
+        if (nombre < 0) {
+            // Utilisation de l'exception définie
+            throw new IllegalParamISIException("Factoriel d'un nombre négatif impossible");
+        }
         int fact = 1;
         for (int i = 1; i <= nombre; i++) {
             fact *= i;
@@ -19,23 +21,24 @@ public class OperationMathematique {
     }
 
     public int[] trier(int[] liste) {
-        Arrays.sort(liste); // trie croissant
-        int n = liste.length;
-        int[] resultat = new int[n];
-        for (int i = 0; i < n; i++) {
-            resultat[i] = liste[n - 1 - i]; // inverse pour décroissant
+        int[] copie = Arrays.copyOf(liste, liste.length);
+        Arrays.sort(copie);
+        for (int i = 0; i < copie.length / 2; i++) {
+            int temp = copie[i];
+            copie[i] = copie[copie.length - 1 - i];
+            copie[copie.length - 1 - i] = temp;
         }
-        return resultat;
+        return copie;
     }
 
     public double maxNumba(double[] valeurs) {
         if (valeurs == null || valeurs.length == 0) {
-            throw new IllegalArgumentException("Le tableau ne peut pas être vide");
+            throw new IllegalArgumentException("Le tableau est vide ou null");
         }
         double max = valeurs[0];
-        for (double val : valeurs) {
-            if (val > max) {
-                max = val;
+        for (double v : valeurs) {
+            if (v > max) {
+                max = v;
             }
         }
         return max;
