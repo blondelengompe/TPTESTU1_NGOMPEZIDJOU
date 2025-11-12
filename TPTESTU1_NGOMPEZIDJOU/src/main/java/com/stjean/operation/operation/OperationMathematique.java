@@ -4,13 +4,14 @@ import java.util.Arrays;
 
 public class OperationMathematique {
 
+    // Vérifie si un nombre est positif
     public boolean estPositif(int nombre) {
         return nombre > 0;
     }
 
+    // Calcule le factoriel d'un nombre, lève IllegalParamISIException si négatif
     public int factoriel(int nombre) {
         if (nombre < 0) {
-            // Utilisation de l'exception définie
             throw new IllegalParamISIException("Factoriel d'un nombre négatif impossible");
         }
         int fact = 1;
@@ -20,6 +21,7 @@ public class OperationMathematique {
         return fact;
     }
 
+    // Trie un tableau d'entiers en ordre décroissant
     public int[] trier(int[] liste) {
         int[] copie = Arrays.copyOf(liste, liste.length);
         Arrays.sort(copie);
@@ -31,6 +33,7 @@ public class OperationMathematique {
         return copie;
     }
 
+    // Retourne le maximum d'un tableau de doubles
     public double maxNumba(double[] valeurs) {
         if (valeurs == null || valeurs.length == 0) {
             throw new IllegalArgumentException("Le tableau est vide ou null");
